@@ -28,5 +28,24 @@ class Tests(unittest.TestCase):
             False,
         )
 
+    def test_reset_cells_visited(self):
+        # Create a small test maze (2x2)
+        maze = Maze(0, 0, 2, 2, 10, 10)
+        
+        # First, ensure some cells are marked as visited
+        maze._cells[0][0].visited = True
+        maze._cells[0][1].visited = True
+        maze._cells[1][0].visited = True
+        maze._cells[1][1].visited = True
+        
+        # Call the reset function
+        maze._reset_cells_visited()
+        
+        # Check that all cells are now marked as not visited
+        self.assertFalse(maze._cells[0][0].visited)
+        self.assertFalse(maze._cells[0][1].visited)
+        self.assertFalse(maze._cells[1][0].visited)
+        self.assertFalse(maze._cells[1][1].visited)
+
 if __name__ == "__main__":
     unittest.main()
